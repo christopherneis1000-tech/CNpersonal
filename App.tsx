@@ -227,10 +227,10 @@ const App: React.FC = () => {
                 Calm Thinking. Clear Direction.
               </p>
               <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <button className="w-full md:w-48 px-10 py-5 rounded-full border border-[#F4F2EE] text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-[#F4F2EE] hover:text-[#1E1E1E] transition-all duration-500 pointer-events-auto">
+                <button className="w-full md:w-56 px-10 py-5 rounded-full border border-[#5F6654] text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-[#5F6654] transition-all duration-500 pointer-events-auto">
                   Contact
                 </button>
-                <button className="w-full md:w-48 px-10 py-5 rounded-full bg-[#F4F2EE] text-[#1E1E1E] uppercase tracking-[0.3em] text-[10px] font-black hover:bg-white transition-all duration-500 shadow-xl pointer-events-auto">
+                <button className="w-full md:w-56 px-10 py-5 rounded-full bg-[#5F6654] text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-[#6a725e] hover:scale-105 transition-all duration-500 shadow-xl shadow-black/30 pointer-events-auto">
                   Work
                 </button>
               </div>
@@ -252,7 +252,7 @@ const App: React.FC = () => {
                   pointerEvents: styleMetrics.opacity > 0.5 ? 'auto' : 'none'
                 }}
               >
-                <div className="bg-[#2B2B2B]/90 backdrop-blur-2xl p-12 md:p-20 border-l-[6px] border-[#F4F2EE] shadow-[0_0_120px_rgba(0,0,0,0.95)] relative h-fit md:min-h-[70vh] flex flex-col justify-center text-center">
+                <div className="bg-[#2B2B2B]/90 backdrop-blur-2xl p-12 md:p-20 border-l-[6px] border-[#5F6654] shadow-[0_0_120px_rgba(0,0,0,0.95)] relative h-fit md:min-h-[70vh] flex flex-col justify-center text-center">
                   <div className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#F4F2EE]/20" />
                   
                   <BrainIcon />
@@ -264,9 +264,9 @@ const App: React.FC = () => {
                     "Ich denke, das ist es nicht. Ich denke.... Nein."
                   </p>
                   <div className="flex items-center justify-center space-x-6">
-                    <div className="h-[1px] w-24 bg-[#F4F2EE]/30" />
+                    <div className="h-[1px] w-24 bg-[#5F6654]/40" />
                     <span className="text-xs uppercase tracking-[0.5em] text-[#F4F2EE] font-bold">Analyze this</span>
-                    <div className="h-[1px] w-24 bg-[#F4F2EE]/30" />
+                    <div className="h-[1px] w-24 bg-[#5F6654]/40" />
                   </div>
                 </div>
               </div>
@@ -290,7 +290,7 @@ const App: React.FC = () => {
                  <h2 className="text-6xl md:text-[10rem] font-bold uppercase heading-font leading-none tracking-tight text-[#F4F2EE] mb-12 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                    Let's Connect
                  </h2>
-                 <button className="px-20 py-10 bg-[#F4F2EE] text-[#1E1E1E] rounded-full text-[10px] uppercase tracking-[0.6em] font-black hover:scale-110 active:scale-95 transition-all duration-500 pointer-events-auto shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                 <button className="px-16 py-8 bg-[#5F6654] text-[#F4F2EE] rounded-full text-[12px] uppercase tracking-[0.6em] font-bold hover:bg-[#6a725e] hover:scale-110 active:scale-95 transition-all duration-500 pointer-events-auto shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                    Email Me
                  </button>
               </div>

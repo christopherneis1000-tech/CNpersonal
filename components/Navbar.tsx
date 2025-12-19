@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       <div className="flex items-center h-10 md:h-12">
-        <button className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] bg-[#F4F2EE] text-[#1E1E1E] px-5 md:px-8 py-2 md:py-3 rounded-full hover:bg-white hover:scale-105 transition-all duration-500 font-black shadow-lg">
+        <button className="text-[10px] uppercase tracking-[0.3em] bg-[#5F6654] text-[#F4F2EE] px-10 py-4 rounded-full hover:bg-[#6a725e] hover:scale-105 transition-all duration-500 font-bold shadow-lg shadow-black/20">
           Inquiry
         </button>
       </div>
