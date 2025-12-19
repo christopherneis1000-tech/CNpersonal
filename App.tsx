@@ -10,7 +10,6 @@ import { Logo } from './components/Logo';
 // Premium High-Impact Icons
 const BrainIcon = () => (
   <div className="relative mb-12 flex justify-center items-center animate-float-slow">
-    {/* Subtle Inner Glow */}
     <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full scale-150" />
     <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
       <path d="M12 4.5V3a2 2 0 0 0-4.002-.263l-.01.077c-.503.04-.997.16-1.46.353a4 4 0 0 0-5.463 5.464 4 4 0 0 0 1.503 5.922l.142.06c.414.168.69.57.69 1.015v1.312a3 3 0 0 0 3 3h.31a3 3 0 0 0 2.822-2H12"/>
@@ -22,7 +21,6 @@ const BrainIcon = () => (
 
 const EnvelopeIcon = () => (
   <div className="relative mb-12 flex justify-center items-center animate-float-alt">
-    {/* Outer halo */}
     <div className="absolute inset-0 bg-[#F4F2EE]/5 blur-2xl rounded-full scale-125" />
     <svg width="110" height="110" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
       <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -99,11 +97,9 @@ const App: React.FC = () => {
 
     const handleScroll = () => {
       const vh = window.innerHeight;
-      
       const getSectionProgress = (ref: React.RefObject<HTMLDivElement>, isHero: boolean) => {
         if (!ref.current) return 0;
         const rect = ref.current.getBoundingClientRect();
-        
         if (isHero) {
           const progress = -rect.top / (rect.height - vh);
           return Math.max(0, Math.min(1, progress));
@@ -117,11 +113,7 @@ const App: React.FC = () => {
       const styleProg = getSectionProgress(sectionRefs.style, false);
       const contactProg = getSectionProgress(sectionRefs.contact, false);
 
-      setScrollProgress({
-        hero: heroProg,
-        style: styleProg,
-        contact: contactProg
-      });
+      setScrollProgress({ hero: heroProg, style: styleProg, contact: contactProg });
 
       if (contactProg > 0.1) {
         setActiveSection(SectionId.CONTACT);
@@ -142,9 +134,7 @@ const App: React.FC = () => {
   }
 
   const calculateStyleMetrics = (p: number) => {
-    let opacity = 0;
-    let translateX = 100;
-    let blur = 10;
+    let opacity = 0, translateX = 100, blur = 10;
     if (p >= 0.1 && p < 0.4) {
       const localP = (p - 0.1) / 0.3; 
       opacity = localP;
@@ -173,40 +163,23 @@ const App: React.FC = () => {
           50% { transform: translateY(-30px) rotate(5deg); }
           100% { transform: translateY(0px) rotate(0deg); }
         }
-        .animate-float-slow {
-          animation: float-slow 8s ease-in-out infinite;
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(-15deg); }
+          100% { transform: translateX(200%) skewX(-15deg); }
         }
-        .animate-float-alt {
-          animation: float-alt 7s ease-in-out infinite;
-        }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-alt { animation: float-alt 7s ease-in-out infinite; }
+        .animate-shimmer { animation: shimmer 2s infinite; }
       `}</style>
       <Navbar />
 
       <div className="fixed inset-0 z-0">
-        <ParallaxCanvas 
-          images={imagesRef.current.hero} 
-          progress={scrollProgress.hero} 
-          isActive={activeSection === SectionId.HERO} 
-        />
-        <ParallaxCanvas 
-          images={imagesRef.current.style} 
-          progress={scrollProgress.style} 
-          isActive={activeSection === SectionId.STYLE} 
-          align={0.2}
-          zoom={1.05}
-        />
-        <ParallaxCanvas 
-          images={imagesRef.current.contact} 
-          progress={scrollProgress.contact} 
-          isActive={activeSection === SectionId.CONTACT} 
-          fit="cover"
-          align={0.5}
-          zoom={1.1}
-        />
+        <ParallaxCanvas images={imagesRef.current.hero} progress={scrollProgress.hero} isActive={activeSection === SectionId.HERO} />
+        <ParallaxCanvas images={imagesRef.current.style} progress={scrollProgress.style} isActive={activeSection === SectionId.STYLE} align={0.2} zoom={1.05} />
+        <ParallaxCanvas images={imagesRef.current.contact} progress={scrollProgress.contact} isActive={activeSection === SectionId.CONTACT} fit="cover" align={0.5} zoom={1.1} />
       </div>
 
       <main className="relative z-10">
-        {/* HERO SECTION */}
         <section ref={sectionRefs.hero} id="hero" className="h-[300vh] flex flex-col items-center justify-start pointer-events-none">
           <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center p-8 text-center">
             <div 
@@ -219,50 +192,37 @@ const App: React.FC = () => {
             >
               <div className="flex items-center justify-center mb-8">
                 <Logo size="xl" className="mr-6 md:mr-10" />
-                <h1 className="text-5xl md:text-[10rem] font-bold uppercase heading-font leading-none tracking-tight text-[#F4F2EE]">
-                  PERSONAL
-                </h1>
+                <h1 className="text-5xl md:text-[10rem] font-bold uppercase heading-font leading-none tracking-tight text-[#F4F2EE]">PERSONAL</h1>
               </div>
-              <p className="text-lg md:text-2xl font-light tracking-[0.4em] uppercase text-[#F4F2EE] mb-12">
-                Calm Thinking. Clear Direction.
-              </p>
+              <p className="text-lg md:text-2xl font-light tracking-[0.4em] uppercase text-[#F4F2EE] mb-12">Calm Thinking. Clear Direction.</p>
+              
               <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <button className="w-full md:w-56 px-10 py-5 rounded-full border border-[#5F6654] text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-[#5F6654] transition-all duration-500 pointer-events-auto">
-                  Contact
+                {/* CONTACT BUTTON - OUTLINED STYLE */}
+                <button className="group relative w-full md:w-56 px-10 py-5 rounded-full border border-[#5F6654]/40 text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold hover:border-[#5F6654] transition-all duration-500 pointer-events-auto backdrop-blur-sm overflow-hidden">
+                   <span className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
+                   <span className="relative z-10">Contact</span>
                 </button>
-                <button className="w-full md:w-56 px-10 py-5 rounded-full bg-[#5F6654] text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-[#6a725e] hover:scale-105 transition-all duration-500 shadow-xl shadow-black/30 pointer-events-auto">
-                  Work
+
+                {/* WORK BUTTON - FILLED PREMIUM STYLE */}
+                <button className="group relative w-full md:w-56 px-10 py-5 rounded-full overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_15px_35px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] bg-gradient-to-b from-[#5F6654] to-[#454B3E] pointer-events-auto">
+                   <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                   <span className="relative z-10 text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold">Work</span>
                 </button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* STYLE SECTION */}
         <section ref={sectionRefs.style} id="style" className="h-[300vh] flex flex-col items-center justify-start pointer-events-none">
           <div className="sticky top-0 h-screen w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden">
             <div className="hidden md:block" />
             <div className="flex items-center justify-start h-full px-6 md:px-0">
-              <div 
-                className="w-full h-full max-w-2xl transition-all duration-100 ease-out transform flex flex-col justify-center"
-                style={{ 
-                  opacity: styleMetrics.opacity,
-                  transform: `translateX(${styleMetrics.translateX}%)`,
-                  filter: `blur(${styleMetrics.blur}px)`,
-                  pointerEvents: styleMetrics.opacity > 0.5 ? 'auto' : 'none'
-                }}
-              >
+              <div className="w-full h-full max-w-2xl transition-all duration-100 ease-out transform flex flex-col justify-center" style={{ opacity: styleMetrics.opacity, transform: `translateX(${styleMetrics.translateX}%)`, filter: `blur(${styleMetrics.blur}px)`, pointerEvents: styleMetrics.opacity > 0.5 ? 'auto' : 'none' }}>
                 <div className="bg-[#2B2B2B]/90 backdrop-blur-2xl p-12 md:p-20 border-l-[6px] border-[#5F6654] shadow-[0_0_120px_rgba(0,0,0,0.95)] relative h-fit md:min-h-[70vh] flex flex-col justify-center text-center">
                   <div className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#F4F2EE]/20" />
-                  
                   <BrainIcon />
-
-                  <h2 className="text-5xl md:text-7xl heading-font mb-10 text-[#F4F2EE] leading-tight uppercase font-light">
-                    Nein. <br/>Ich denke nicht.
-                  </h2>
-                  <p className="text-xl md:text-2xl text-[#F4F2EE] leading-relaxed font-semibold italic mb-12 max-w-lg mx-auto">
-                    "Ich denke, das ist es nicht. Ich denke.... Nein."
-                  </p>
+                  <h2 className="text-5xl md:text-7xl heading-font mb-10 text-[#F4F2EE] leading-tight uppercase font-light">Nein. <br/>Ich denke nicht.</h2>
+                  <p className="text-xl md:text-2xl text-[#F4F2EE] leading-relaxed font-semibold italic mb-12 max-w-lg mx-auto">"Ich denke, das ist es nicht. Ich denke.... Nein."</p>
                   <div className="flex items-center justify-center space-x-6">
                     <div className="h-[1px] w-24 bg-[#5F6654]/40" />
                     <span className="text-xs uppercase tracking-[0.5em] text-[#F4F2EE] font-bold">Analyze this</span>
@@ -274,7 +234,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
         <section ref={sectionRefs.contact} id="contact" className="h-[300vh] flex flex-col items-center justify-start pointer-events-none">
           <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-end pb-[35vh] px-8">
             <div 
@@ -287,11 +246,10 @@ const App: React.FC = () => {
             >
               <div className="text-center flex flex-col items-center">
                  <EnvelopeIcon />
-                 <h2 className="text-6xl md:text-[10rem] font-bold uppercase heading-font leading-none tracking-tight text-[#F4F2EE] mb-12 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                   Let's Connect
-                 </h2>
-                 <button className="px-16 py-8 bg-[#5F6654] text-[#F4F2EE] rounded-full text-[12px] uppercase tracking-[0.6em] font-bold hover:bg-[#6a725e] hover:scale-110 active:scale-95 transition-all duration-500 pointer-events-auto shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-                   Email Me
+                 <h2 className="text-6xl md:text-[10rem] font-bold uppercase heading-font leading-none tracking-tight text-[#F4F2EE] mb-12 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">Let's Connect</h2>
+                 <button className="group relative px-16 py-8 rounded-full overflow-hidden transition-all duration-700 hover:scale-110 active:scale-95 shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] bg-gradient-to-b from-[#5F6654] to-[#3D4237] pointer-events-auto">
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                    <span className="relative z-10 text-[#F4F2EE] text-[12px] uppercase tracking-[0.6em] font-bold">Email Me</span>
                  </button>
               </div>
             </div>

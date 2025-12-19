@@ -19,8 +19,10 @@ export const Navbar: React.FC = () => {
       </div>
 
       <div className="flex items-center h-10 md:h-12">
-        <button className="text-[10px] uppercase tracking-[0.3em] bg-[#5F6654] text-[#F4F2EE] px-10 py-4 rounded-full hover:bg-[#6a725e] hover:scale-105 transition-all duration-500 font-bold shadow-lg shadow-black/20">
-          Inquiry
+        <button className="group relative overflow-hidden text-[10px] uppercase tracking-[0.4em] font-bold text-[#F4F2EE] px-10 py-4 rounded-full transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.15)] bg-gradient-to-b from-[#5F6654] to-[#454B3E] hover:shadow-[0_15px_40px_rgba(95,102,84,0.4)]">
+          {/* Shimmer Effect */}
+          <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+          <span className="relative z-10">Inquiry</span>
         </button>
       </div>
     </nav>
