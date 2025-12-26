@@ -211,10 +211,15 @@ const App: React.FC = () => {
                 </button>
 
                 {/* WORK BUTTON - FILLED PREMIUM STYLE */}
-                <button className="group relative w-full md:w-56 px-10 py-5 rounded-full overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_15px_35px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] bg-gradient-to-b from-[#5F6654] to-[#454B3E] pointer-events-auto">
+                <a 
+                  href="https://cnpersonal.christopherneis1000.workers.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-full md:w-56 px-10 py-5 rounded-full overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_15px_35px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] bg-gradient-to-b from-[#5F6654] to-[#454B3E] pointer-events-auto block text-center"
+                >
                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
                    <span className="relative z-10 text-[#F4F2EE] uppercase tracking-[0.3em] text-[10px] font-bold">Work</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -276,6 +281,19 @@ Nulla, nulla!</p>
           </div>
         </section>
       </main>
+
+      <footer className="relative z-20 py-8 border-t border-[#5F6654]/20 bg-[#1E1E1E]/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-8 text-center">
+          <a 
+            href="https://noirdesigner.christopherneis1000.workers.dev/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block text-[#F4F2EE]/60 hover:text-[#F4F2EE] text-xs uppercase tracking-[0.3em] font-bold transition-colors duration-300"
+          >
+            NOIR design studio
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };
