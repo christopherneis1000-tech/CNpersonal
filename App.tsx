@@ -19,6 +19,15 @@ const BrainIcon = () => (
   </div>
 );
 
+const ToothIcon = () => (
+  <div className="relative mb-12 flex justify-center items-center animate-float-slow">
+    <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full scale-150" />
+    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+      <path d="M8 2C6.5 2 5 3.5 5 6c0 3-1 5-1 8 0 2 1 4 2 5 1 1 2 1 2 1s0-2 1-3c1-1 1-2 1-2s0 1 1 2c1 1 1 3 1 3s1 0 2-1c1-1 2-3 2-5 0-3-1-5-1-8 0-2.5-1.5-4-3-4s-3 1.5-3 4c0-2.5-1.5-4-3-4z"/>
+    </svg>
+  </div>
+);
+
 const EnvelopeIcon = () => (
   <div className="relative mb-12 flex justify-center items-center animate-float-alt">
     <div className="absolute inset-0 bg-[#F4F2EE]/5 blur-2xl rounded-full scale-125" />
@@ -134,19 +143,17 @@ const App: React.FC = () => {
   }
 
   const calculateStyleMetrics = (p: number) => {
-    let opacity = 0, translateX = 100, blur = 10;
+    let opacity = 0, translateY = 100;
     if (p >= 0.1 && p < 0.4) {
       const localP = (p - 0.1) / 0.3; 
       opacity = localP;
-      translateX = (1 - localP) * 100;
-      blur = (1 - localP) * 10;
+      translateY = (1 - localP) * 100;
     } else if (p >= 0.4 && p <= 1.0) {
       const localP = (p - 0.4) / 0.6; 
       opacity = 1 - localP;
-      translateX = localP * 100;
-      blur = localP * 10;
+      translateY = -localP * 100;
     }
-    return { opacity, translateX, blur };
+    return { opacity, translateY };
   };
   const styleMetrics = calculateStyleMetrics(scrollProgress.style);
 
@@ -217,15 +224,28 @@ const App: React.FC = () => {
           <div className="sticky top-0 h-screen w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden">
             <div className="hidden md:block" />
             <div className="flex items-center justify-start h-full px-6 md:px-0">
-              <div className="w-full h-full max-w-2xl transition-all duration-100 ease-out transform flex flex-col justify-center" style={{ opacity: styleMetrics.opacity, transform: `translateX(${styleMetrics.translateX}%)`, filter: `blur(${styleMetrics.blur}px)`, pointerEvents: styleMetrics.opacity > 0.5 ? 'auto' : 'none' }}>
+              <div className="w-full h-full max-w-2xl transition-all duration-100 ease-out transform flex flex-col justify-center" style={{ opacity: styleMetrics.opacity, transform: `translateY(${styleMetrics.translateY}%)`, pointerEvents: styleMetrics.opacity > 0.5 ? 'auto' : 'none' }}>
                 <div className="bg-[#2B2B2B]/90 backdrop-blur-2xl p-12 md:p-20 border-l-[6px] border-[#5F6654] shadow-[0_0_120px_rgba(0,0,0,0.95)] relative h-fit md:min-h-[70vh] flex flex-col justify-center text-center">
                   <div className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#F4F2EE]/20" />
-                  <BrainIcon />
-                  <h2 className="text-5xl md:text-7xl heading-font mb-10 text-[#F4F2EE] leading-tight uppercase font-light">Nein. <br/>Ich denke nicht.</h2>
-                  <p className="text-xl md:text-2xl text-[#F4F2EE] leading-relaxed font-semibold italic mb-12 max-w-lg mx-auto">"Ich denke, das ist es nicht. Ich denke.... Nein."</p>
+                  <ToothIcon />
+                  <h2 className="text-4xl md:text-6xl heading-font mb-10 text-[#F4F2EE] leading-tight font-light">Wieviele Zähne hast du, Batman?</h2>
+                  <p className="text-lg md:text-xl text-[#F4F2EE] leading-[2] font-normal mb-12 max-w-lg mx-auto whitespace-pre-line">Hány foga van a Batmannek? 
+Tizenhat, tizenhat!
+Hány foga van a Batmannek? 
+Tizenhat, tizenhat!
+{'\n'}
+Hány foga van a Robinnek? 
+Huszonnyolc, huszonnyolc!
+Hány foga van a Robinnek? 
+Huszonnyolc, huszonnyolc!
+{'\n'}
+Hány foga van a Jokernak? 
+Nulla, nulla!
+Hány foga van a Jokernak? 
+Nulla, nulla!</p>
                   <div className="flex items-center justify-center space-x-6">
                     <div className="h-[1px] w-24 bg-[#5F6654]/40" />
-                    <span className="text-xs uppercase tracking-[0.5em] text-[#F4F2EE] font-bold">Analyze this</span>
+                    <span className="text-xs uppercase tracking-[0.3em] text-[#F4F2EE] font-bold">Hány foga van a Batmannek?</span>
                     <div className="h-[1px] w-24 bg-[#5F6654]/40" />
                   </div>
                 </div>

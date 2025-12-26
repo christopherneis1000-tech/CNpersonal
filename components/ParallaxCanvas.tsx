@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { FRAME_COUNT } from '../constants';
 
 interface ParallaxCanvasProps {
@@ -21,6 +21,7 @@ export const ParallaxCanvas: React.FC<ParallaxCanvasProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>(images);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
     imagesRef.current = images;
@@ -121,8 +122,12 @@ export const ParallaxCanvas: React.FC<ParallaxCanvasProps> = ({
 
   useEffect(() => {
     if (isActive) {
-      const raf = requestAnimationFrame(drawFrame);
-      return () => cancelAnimationFrame(raf);
+      rafRef.current = requestAnimationFrame(drawFrame);
+      return () => {
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+        }
+      };
     }
   }, [progress, isActive, drawFrame]);
 
@@ -133,7 +138,8 @@ export const ParallaxCanvas: React.FC<ParallaxCanvasProps> = ({
       style={{ 
         opacity: isActive ? 1 : 0,
         visibility: isActive ? 'visible' : 'hidden',
-        zIndex: isActive ? 10 : 0
+        zIndex: isActive ? 10 : 0,
+        willChange: isActive ? 'opacity' : 'auto'
       }}
     />
   );
