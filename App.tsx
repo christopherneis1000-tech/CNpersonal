@@ -212,16 +212,13 @@ const App: React.FC = () => {
                    <span className="relative z-10">Contact</span>
                 </button>
 
-                <a 
-                  href="https://cnpersonal.christopherneis1000.workers.dev/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-filled w-full md-w-56 pointer-events-auto block text-center"
+                <button 
+                  className="btn btn-filled w-full md-w-56 pointer-events-auto"
                   aria-label="View our work portfolio"
                 >
                    <span className="btn-shimmer" />
                    <span className="relative z-10">Work</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
