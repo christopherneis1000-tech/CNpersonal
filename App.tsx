@@ -190,7 +190,7 @@ const App: React.FC = () => {
       </Suspense>
 
       <main className="relative z-10">
-        <section ref={sectionRefs.hero} id="hero" className="section-hero">
+        <section ref={sectionRefs.hero} id="hero" className="section-hero" aria-label="Hero introduction">
           <div className="section-sticky">
             <div 
               className="max-w-4xl transition-all duration-700 flex flex-col items-center"
@@ -207,7 +207,7 @@ const App: React.FC = () => {
               <p className="text-lg md-text-2xl font-light tracking-04 uppercase text-ivory mb-12">Calm Thinking. Clear Direction.</p>
               
               <div className="flex flex-col md-flex-row items-center justify-center space-y-4 md-space-y-0 md-space-x-6">
-                <button className="btn btn-outline w-full md-w-56 pointer-events-auto">
+                <button className="btn btn-outline w-full md-w-56 pointer-events-auto" aria-label="Contact us">
                    <span className="btn-bg" />
                    <span className="relative z-10">Contact</span>
                 </button>
@@ -217,6 +217,7 @@ const App: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-filled w-full md-w-56 pointer-events-auto block text-center"
+                  aria-label="View our work portfolio"
                 >
                    <span className="btn-shimmer" />
                    <span className="relative z-10">Work</span>
@@ -226,7 +227,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section ref={sectionRefs.style} id="style" className="section-hero">
+        <section ref={sectionRefs.style} id="style" className="section-hero" aria-label="Design philosophy and style">
           <div className="style-grid sticky top-0">
             <div className="hidden md-block" />
             <div className="style-content">
@@ -258,7 +259,7 @@ Nulla, nulla!</p>
           </div>
         </section>
 
-        <section ref={sectionRefs.contact} id="contact" className="section-hero">
+        <section ref={sectionRefs.contact} id="contact" className="section-hero" aria-label="Contact information">
           <div className="section-contact-sticky">
             <div 
               className="transition-all duration-700 ease-out flex flex-col items-center"
@@ -271,7 +272,7 @@ Nulla, nulla!</p>
               <div className="text-center flex flex-col items-center">
                  <EnvelopeIcon />
                  <h2 className="text-6xl md-text-10xl font-bold uppercase heading-font leading-none tracking-tight text-ivory mb-12 drop-shadow-heading">Let's Connect</h2>
-                 <button className="btn btn-filled px-16 py-8 transition-all duration-700 hover-scale-110 active-scale-95 pointer-events-auto" style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)', background: 'linear-gradient(to bottom, #5F6654, #3D4237)' }}>
+                 <button className="btn btn-filled px-16 py-8 transition-all duration-700 hover-scale-110 active-scale-95 pointer-events-auto" style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)', background: 'linear-gradient(to bottom, #5F6654, #3D4237)' }} aria-label="Send an email to contact us">
                     <span className="btn-shimmer" />
                     <span className="relative z-10" style={{ fontSize: '12px', letterSpacing: '0.6em' }}>Email Me</span>
                  </button>
@@ -281,13 +282,14 @@ Nulla, nulla!</p>
         </section>
       </main>
 
-      <footer className="footer">
+      <footer className="footer" role="contentinfo">
         <div className="max-w-7xl mx-auto px-8 text-center">
           <a 
-            href="https://noirdesigner.christopherneis1000.workers.dev/" 
+            href="https://noirdesigner.pages.dev/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="footer-link"
+            aria-label="Visit NOIR design studio website"
           >
             NOIR design studio
           </a>
