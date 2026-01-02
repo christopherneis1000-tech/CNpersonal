@@ -130,6 +130,46 @@ export const ParallaxCanvas: React.FC<ParallaxCanvasProps> = ({
       };
     }
   }, [progress, isActive, drawFrame]);
+  
+  // Draw initial frame when images become available
+  useEffect(() => {
+    if (images.length > 0 && isActive && canvasRef.current) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d', { alpha: false });
+      if (ctx && images[0]?.complete && images[0]?.naturalWidth > 0) {
+        // Draw frame 0 immediately
+        const img = images[0];
+        ctx.fillStyle = '#1E1E1E';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        const canvasAspect = canvas.width / canvas.height;
+        const imgAspect = img.naturalWidth / img.naturalHeight;
+        let drawWidth, drawHeight, offsetX, offsetY;
+        
+        if (canvasAspect > imgAspect) {
+          drawWidth = canvas.width;
+          drawHeight = canvas.width / imgAspect;
+        } else {
+          drawWidth = canvas.height * imgAspect;
+          drawHeight = canvas.height;
+        }
+        offsetX = (canvas.width - drawWidth) * 0.5;
+        offsetY = (canvas.height - drawHeight) * 0.5;
+        
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        
+        // Vignette
+        const gradient = ctx.createRadialGradient(
+          canvas.width / 2, canvas.height / 2, 0,
+          canvas.width / 2, canvas.height / 2, canvas.width * 0.9
+        );
+        gradient.addColorStop(0, 'rgba(30, 30, 30, 0)');
+        gradient.addColorStop(1, 'rgba(30, 30, 30, 0.45)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+  }, [images, isActive]);
 
   return (
     <canvas 
